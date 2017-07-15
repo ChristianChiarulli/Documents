@@ -1,0 +1,38 @@
+========== Install Popcorn Time ==========
+
+##### Download Binaries #####
+
+sudo mkdir /opt/popcorn-time
+
+---FOR 32-BIT SYSTEM EXECUTE:---
+
+sudo wget -qO- https://get.popcorntime.sh/build/Popcorn-Time-0.3.10-Linux-32.tar.xz | sudo tar Jx -C /opt/popcorn-time
+
+---FOR 64-BIT SYSTEM EXECUTE:---
+
+sudo wget -qO- https://get.popcorntime.sh/build/Popcorn-Time-0.3.10-Linux-64.tar.xz | sudo tar Jx -C /opt/popcorn-time
+
+##### Create Executable Link #####
+
+sudo ln -sf /opt/popcorn-time/Popcorn-Time /usr/bin/popcorn-time
+
+##### Create Desktop Launcher #####
+
+sudo vi /usr/share/applications/popcorntime.desktop
+
+---INSERT THE FOLLOWING---
+
+[Desktop Entry]
+Version = 1.0
+Type = Application
+Terminal = false
+Name = Popcorn Time
+Exec = /usr/bin/popcorn-time
+Icon = /opt/popcorn-time/popcorntime.png
+Categories = Application;
+
+##### Download the Popcorn Time Logo #####
+
+sudo wget -q -O /opt/popcorn-time/popcorntime.png https://upload.wikimedia.org/wikipedia/commons/6/6c/Popcorn_Time_logo.png
+
+==========================================

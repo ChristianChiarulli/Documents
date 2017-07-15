@@ -1,0 +1,45 @@
+========== Create a virtual environment for python =========
+
+##### Install #####
+
+pip3 install virtualenv
+
+##### Test #####
+
+virtualenv --version
+
+##### Create in current directory #####
+
+virtualenv my_project
+
+##### This next option lets you choose the version of python #####
+
+virtualenv -p /usr/bin/python2.7 my_project 
+
+or 
+
+virtualenv -p /usr/bin/python3.6 my_project
+
+##### Activate #####
+
+source my_project/bin/activate
+
+##### Deactivate #####
+
+deactivate
+
+##### Freeze Requirements #####
+
+pip3 freeze > requirements.txt
+
+##### Re-isntall Requirements #####
+
+pip3 install -r requirements.txt
+
+##### Auto Environment #####
+
+git clone git://github.com/kennethreitz/autoenv.git ~/.autoenv
+
+echo 'source ~/.autoenv/activate.sh' >> ~/.bashrc
+
+============================================================
