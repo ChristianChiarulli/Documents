@@ -1,0 +1,24 @@
+========== Create a ROS Package ==========
+
+----- Create workspace -----
+
+mkdir -p catkin_ws/src
+
+### src will contain all of the source code ###
+
+----- Create package -----
+
+cd src
+
+catkin_create_pkg package-name
+
+### this command creates two config files ###
+
+package.xml & CMakeLists.txt
+
+----- Tips -----
+
+packages must be name lowrcase only
+
+
+==========================================
