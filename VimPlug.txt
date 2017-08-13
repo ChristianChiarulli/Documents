@@ -1,0 +1,51 @@
+========== Install plugins with vim-plug ==========
+
+----- Go here -----
+
+https://github.com/junegunn/vim-plug
+
+----- Run this -----
+
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+----- validation -----
+
+cd ~
+ls -a
+cd .vim
+cd autoload
+
+you should see vim plug
+
+----- go to .vimrc and enter the following -----
+
+call plug#begin()
+
+Plug nameOfPublisher/plugin
+
+call plug#end()
+
+----- go to vim awesome to find plugins-----
+
+http://vimawesome.com/
+
+go there to get plugs
+
+----- now install plugs -----
+
+open vim
+
+:PlugInstall
+
+### some other commands ###
+
+:PlugUpdate
+:PlugUpgrade
+:PlugClean
+
+----- map commands in .vimrc -----
+
+:<C-n> :NERDTree
+
+===================================================

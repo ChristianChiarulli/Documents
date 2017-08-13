@@ -1,0 +1,25 @@
+===== ROS on multiple machines =====
+
+----- On master -----
+
+export ROS_IP=master_IP
+
+----- On slave -----
+
+export ROS_MASTER_URI=http://master_IP
+
+export ROS_IP=slave_IP
+
+----- useful stuff -----
+
+### to get ip address ### 
+
+hostname -I
+
+### put this junk in your .bashrc ###
+
+export ROS_MASTER_URI=http://master_IP:11311
+
+export ROS_HOSTNAME=master_IP
+
+================================
