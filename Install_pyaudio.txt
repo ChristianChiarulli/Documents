@@ -1,0 +1,10 @@
+========== Install pyaudio ==========
+
+sudo apt install python-pyaudio
+
+sudo apt install libjack-jackd2-dev portaudio19-dev
+
+pip3 install pyaudio
+
+=====================================
+

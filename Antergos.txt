@@ -1,0 +1,37 @@
+========== Antergos ==========
+
+----- Trouble with install -----
+
+quit installer and run
+
+sudo -E cnchi -d -v --disable-rank-mirrors
+
+might be useful to check logs
+
+/tmp/cnchi.log
+
+----- If wifi issues -----
+
+sudo wifi-menu
+
+then connect to chosen wifi
+
+run
+
+systemctl status "netctl@w"
+
+then click tab this should end in .service
+
+----- if there is an issue -----
+
+sudo ip link set wlp <tab> down
+
+ping 8.8.8.8
+
+sudo ip link set wlp <tab> up
+
+sudo netctl start wlp <tab>
+
+### this should fix wifi issues ###
+
+==============================

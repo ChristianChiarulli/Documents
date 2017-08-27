@@ -1,0 +1,5 @@
+========== i3 User Guide Link ==========
+
+https://i3wm.org/docs/userguide.html
+
+========================================

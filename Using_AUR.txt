@@ -1,0 +1,29 @@
+========== AUR ==========
+
+----- add repo to config file -----
+
+sudo vim /etc/pacman.conf
+
+add 
+
+[archlinux]
+SigLevel = Never
+Server = http://repo.archlinux.fr/$arch
+
+----- refresh repositories -----
+
+pacman -Syyy
+
+----- install yaourt -----
+
+sudo pacman -S yaourt
+
+----- install base-devel -----
+
+sudo pacman -S base-devel
+
+----- tip -----
+
+if there is a problem updating system you may want to remeove yaourt
+
+=========================

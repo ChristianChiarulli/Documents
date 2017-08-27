@@ -1,0 +1,352 @@
+========== Arch Installaton ==========
+
+Go to Arch website download iso
+
+create bootable drive
+
+----- After boot -----
+
+loadkeys us
+
+----- check partitions -----
+
+fdisk -l
+
+look for sd(x) to install on
+
+----- partiions -----
+
+create a root partition to house operating system
+
+create swap if you feel like you need it
+
+then use rest of space for home folder
+
+if you want to re-install operating system root partition is the only change now
+
+### commands ###
+
+fdisk /dev/sda
+
+use command <d> to delete partions
+
+use command <p> to print /dev/sda info
+
+use command <n> to create partion
+
+press <p> for primary 
+
+enter <1> or just press <enter>
+
+press <enter> again to start partion
+
+this should start you at the beginning of the drive
+
+then enter <+20G>
+
+this will create a root partition of 20G
+
+press <n>
+
+press <p>
+
+press <2> (or) <enter>
+
+press <enter>
+
+### create swap partion ###
+
+press <t>
+
+press <2>
+
+press <L>
+
+enter <82> or linux swap solaris
+
+### create home ###
+
+press <n>
+
+press <p>
+
+press <enter>
+
+----- Save changes to disk -----
+
+press <w>
+
+----- create file system for root, home and swap -----
+
+(-L is to label these partions to use easier names when referencing them)
+
+mkfs.ext4 -L p_arch /dev/sda1
+
+mkfs.ext4 -L p_home /dev/sda3
+
+mkswap -L p_swap /dev/sda2
+
+----- mount partitions -----
+
+mount -L p_arch /mnt
+
+cd /mnt
+
+ls -oah
+
+mkdir home
+
+mount /dev/sda3 /mnt/home
+
+swapon -L p_swap
+
+Now we have the file structure to write the data too
+
+----- establish network connection -----
+
+wifi-menu
+
+ping 8.8.8.8
+
+----- select mirror servers -----
+
+nano /etc/pacman.d/mirrorlist
+
+comment out all servers not in us (or wherever you're from)
+
+----- Download software and libraries (and intel-ucode if you have an intel processor) -----
+
+pacstrap /mnt base base-devel intel-ucode wpa_supplicant dialog
+
+wait for download
+
+ls -oah (to confirm)
+
+----- generate file system table -----
+
+genfstab -p /mnt
+
+change labels from sda to the labels given earlier
+
+genfstab -pL /mnt > /mnt/etc/fstab
+
+cat /mnt/etc/fstab (just to look and confirm)
+
+----- if you are using an ssd (you should be) -----
+
+ssd's were not meant to be rewritten to as often so this will increase the lifespan of the ssd
+
+nano /mnt/etc/fstab
+
+change -> rw,relatime,data=ordered
+
+to -> rw,defaults,noatime,discard
+
+and for swap
+
+change -> defaults 
+
+to -> defaults,noatime,discard
+
+leave home untouched
+
+----- change root -----
+
+in this step you will change the root fromthe flash drive to the root of the machine
+
+arch-chroot /mnt
+
+----- create hostname -----
+
+echo "machine" > /etc/hostname
+
+nano etc/hosts
+
+enter 
+
+127.0.1.1	machine.localdomain	machine
+
+----- locale -----
+
+nano /etc/locale.gen
+
+### uncomment en_US.UTF-8 UTF-8 ###
+### uncomment en_US ISO-8859-1
+
+locale-gen
+
+nano locale.conf 
+
+add -> LANG=en_US.UTF-8
+
+nano /etc/vconsole.conf
+
+add -> KEYMAP=us
+
+----- timezone -----
+
+ls /usr/share/zoneinfo/
+
+### create symbolic link ###
+
+ln -sf /usr/share/zoneinfo/US/Eastern /etc/localtime
+
+----- test internet -----
+
+ping localhost
+ping localhost.localdomain
+ping machine.localdomain
+ping pornhub.com
+
+----- enable 32 bit packages on 64 bit os -----
+
+nano /etc/pacman.conf
+
+uncomment under 32 bit option
+
+for security
+
+add -> SigLevel = PackageRequired TrustedOnly
+
+----- pacman update -----
+
+pacman -Sy
+
+### -y answers all of the questions with yes ###
+
+----- build linux kernel -----
+
+mkinitcpio -p linux
+
+----- create password -----
+
+passwd
+
+<enter password>
+
+----- install bootloader -----
+
+pacman -S grub
+
+grub-install --target=i386-pc /dev/sdx
+
+grub-mkconfig -o /boot/grub/grub.cfg
+
+
+----- reboot -----
+
+exit
+
+reboot
+
+****** post install ******
+
+----- add user -----
+
+useradd -m -g users -s /bin/bash chris
+
+passwd chris
+
+<enter password>
+
+----- give sudo access -----
+
+pacman -S sudo
+
+nano /etc/sudoers
+
+uncomment the wheel group execute
+
+### add user to wheel ###
+
+gpasswd -a chris wheel
+
+----- switch to new user -----
+
+su chris
+
+----- install important programs -----
+
+pacman -S acpid ntp dbus avahi cups cronie
+
+just press 1 if prompted
+
+----- use system ctl to enable services -----
+
+systemctl enable acpid
+
+systemctl enable ntpd
+
+systemctl enable avahi-daemon
+
+systemctl enable org.cups.cupsd.service
+
+----- install ntp -----
+
+pacman -S ntp
+
+nano /etc/ntp.conf
+
+delete stuff under Associate to Arch blah blah
+
+add -> server us.pool.ntp.org
+
+enter <date> to confirm
+
+----- install xorg -----
+
+pacman -S xorg-server xorg-xinit xorg-apps
+
+----- install gpu driver -----
+
+list all drivers
+
+pacman -Ss xf86-video | less
+
+q to exit
+
+pacman -S xf86-video-amd-gpu (in my case)
+
+if you don't know or don't care and just want to install all drivers 
+
+pacman -S xorg-drivers
+
+----- if using laptop -----
+
+pacman -S xf86-input-synaptics
+
+----- good link for xorg -----
+
+https://wiki.archlinux.org/index.php/xorg
+
+----- install more xorg stuff -----
+
+pacman -S xorg-twm xorg-xclock xterm
+
+----- switch to user -----
+
+su chris
+
+----- choose window manager -----
+
+sudo nano .xinitrc
+
+add -> exec i3
+
+sudo pacman -S i3
+
+install all
+
+----- logout -----
+
+exit 
+
+exit
+
+----- start i3 -----
+
+startx
+
+go through i3 config
+
+
