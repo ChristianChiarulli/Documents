@@ -1,0 +1,46 @@
+========== Install broadcom drivers debian ==========
+
+go to /etc/apt/sources.list
+
+Debian install Broadcom
+
+1. Add contrib and non-free to your sources.
+
+2. Then enter in terminal : sudo apt-get update  (This updates your package lists)
+
+3. Then enter in terminal:
+
+   sudo apt-get install broadcom-sta-dkms  (This installs the broadcom drivers)
+
+4. Reboot then your wifi networks should be visible
+
+========== NVIDIA junk ==========
+
+Debian add Nvidia drivers
+
+1. Add contrib and non-free to sources 
+
+2. Then enter in terminal:
+
+    sudo apt-get update   (This updates your package lists)
+
+3. Then enter in terminal:
+
+    sudo apt-get install linux-headers-$(uname -r|sed 's,[^-]*-[^-]*-,,') nvidia-kernel-dkms
+
+    (The above command  installs the Nvidia headers and Nvidia kernel and drivers)
+
+4. Then enter in terminal:
+
+     sudo apt-get install nvidia-xconfig    (This installs the nvidia-xconfig package)
+
+5.  Then enter in terminal : sudo nvidia-xconfig    (This runs the nvidia-xconfig program    which rewrites your xconfig file telling the system to use your nvidia card.)                    
+      
+     
+Then reboot
+
+You should then have the Nvidia control panel app in your menu showing which Nvidia driver you have installed 
+
+========== For AMD ==========
+
+apt-get install firmware-linux-nonfree libgl1-mesa-dri xserver-xorg-video-ati

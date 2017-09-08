@@ -1,0 +1,6 @@
+========== Links to teleop stuff ==========
+
+https://answers.ros.org/question/173094/creating-a-teleop-nodecmd_vel-publisher/
+
+http://wiki.ros.org/joy/Tutorials/WritingTeleopNode
+===========================================

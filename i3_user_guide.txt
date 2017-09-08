@@ -2,4 +2,6 @@
 
 https://i3wm.org/docs/userguide.html
 
+https://fedoramagazine.org/getting-started-i3-window-manager/
+
 ========================================

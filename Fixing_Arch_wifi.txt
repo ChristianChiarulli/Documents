@@ -1,0 +1,23 @@
+========== Arch wifi connection ==========
+
+pacman -S networkmanager
+
+----- start it -----
+
+systemctl start NetworkManager
+
+----- auto-start on boot -----
+
+systemctl enable NetworkManager
+
+----- tell it to connect to wifi -----
+
+nmcli dev wifi con "My network"
+
+----- Tips -----
+
+you can find the name of the desired network by
+
+sudo wifi-menu
+
+==========================================
