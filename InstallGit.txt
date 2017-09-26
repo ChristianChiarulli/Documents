@@ -1,0 +1,26 @@
+sudo apt-get install git
+sudo apt-get update
+sudo apt-get upgrade
+
+git config --global push.default simple
+git config --global user.name "user_name"
+git config --global user.email "email_id"
+
+git clone url
+
+git add *
+git commit -m “some message goes here”
+git push
+
+git branch (checks current branch)
+git fetch
+git checkout test
+
+If you want credentials temporarily stored
+git config --global credential.helper 'cache --timeout 3600'
+
+If you want permanent credentials do this before push
+git config --global credential.helper store (first time only)
+git push
+
+git pull
