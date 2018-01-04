@@ -1,0 +1,31 @@
+### Steps to add sudoer ###
+
+- Become root
+
+su
+
+- Install Sudo
+
+apt install sudo
+
+- add user where 'user' is the name of the user
+
+usermod -a -g user
+
+- As root edit /etc/sudoers and place the following line:
+
+youruser    ALL=(ALL) NOPASSWD:ALL
+
+- after
+
+# Allow members of group sudo to execute any command
+%sudo   ALL=(ALL:ALL) ALL
+
+- save with :wq! if using vim
+
+- In this way you will be capable to execute all commands that require sudo privileges passwordless.
+
+- In order to use sudo and be prompted for a password you need to remove
+
+NOPASSWD:ALL
+
