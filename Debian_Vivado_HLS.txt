@@ -1,0 +1,17 @@
+# Debian which is not supported
+
+Well, this is quiet strange since Ubuntu is derived from Debian (and this last one is more stable).
+
+What are the differences between Debian and Ubuntu that make Debian an unsupported Linux distribution for Xilinx's tools ?
+
+ 
+
+BTW it's just required to install libc6-dev-amd64 (*) which install crt1.o crti.o and crtn.o compiled to 64 bit.
+
+Now the command csim_design is executed without any error.
+
+ 
+
+(*) If you have libc6-dev-i386 also installed, this could make conflict.
+
+-Simon from some forum 

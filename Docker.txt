@@ -1,0 +1,50 @@
+#### Docker ####
+
+-- Commands --
+
+- Show active containers
+
+docker ps 
+
+- Show all containers 
+
+docker ps -a
+
+-- Remove a conatiner -- 
+
+docker rm <container>
+
+- Run docker file after pull
+
+eg.
+
+docker run -it -d ubuntu
+
+-- Run existing conatiners --
+
+- Must be running
+
+docker exec -it <container> bash
+
+-- List available local images --
+
+docker images
+
+-- Stop Conatainer --
+
+docker stop <container>
+
+-- Create local image --
+
+docker commit <container> user/environment_name
+
+-- Push to DockerHub --
+
+docker push user/environment_name
+
+-- Open Ports --
+
+- when running 
+
+docker run -itd -p 8888:8888 -p 6006:6006 ubuntu
+
