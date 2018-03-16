@@ -1,0 +1,2 @@
+VBoxManage controlvm "Name of VM" setvideomodehint 1366 768 32
+
