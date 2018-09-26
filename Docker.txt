@@ -57,3 +57,9 @@ docker run -v $(pwd):/absolute/path/to/dir
 -- If Jupyter won't start --
 
 jupyter notebook --ip=0.0.0.0 --port=8888 --allow-root
+
+-- Examples --
+
+nvidia-docker run -itd --rm -v $(pwd)/FastAI:/workspace -p 8888:8888 fastai
+
+docker exec -it quirky_wright bash
